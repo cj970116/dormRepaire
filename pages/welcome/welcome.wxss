@@ -1,0 +1,17 @@
+page{
+  background-image: linear-gradient(25deg, #e9706a, #cb9c8e, #9bc1b4, #00e3db)
+}
+
+.iconfont{
+  font-size: 200rpx;
+}
+
+.home{
+  height: 100vh;
+
+}
+
+.tar{
+  height: 30vh;
+
+}

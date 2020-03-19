@@ -1,0 +1,117 @@
+<view class="homePage">
+	<!-- 默认显示进度页面 -->
+	<view class="main" wx:if="{{isShow}}">
+		<view>
+			<view class="bg-white padding">
+				<view class="cu-steps">
+					<view class="cu-item {{index==basics?'text-red':''}}" wx:for="{{basicsList}}" wx:key="index" catchtap="changeStep">
+						<text class="cuIcon-{{item.icon}}" data-index="{{index}}"></text> {{item.name}}
+					</view>
+				</view>
+			</view>
+			<!-- 用户查询申报的进度 -->
+			<view wx:if="{{basics==0}}">
+			<!-- TODO: 渲染checkReport列表 -->
+				<view class="accept">
+					<text>无法使用</text>
+					<text>空调开不了，遥控器按下没反应，电池有电</text>
+				</view>
+
+			</view>
+
+
+			<view wx:if="{{basics==1}}">
+				1
+			</view>
+			<view wx:if="{{basics==2}}">
+				2
+			</view>
+		</view>
+	</view>
+
+	<!--用户触发按钮显示申报页面 	 -->
+	<view class="main" wx:if="{{!isShow}}">
+		<view class="">请填写以下内容</view>
+		<view class="cu-form-group">
+			<view class="title">楼栋号</view>
+			<input placeholder="例：1栋"></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">宿舍号</view>
+			<input placeholder="例：101"></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">手机号码</view>
+			<input placeholder="申报人联系方式"></input>
+			<view class="cu-capsule radius">
+				<view class="cu-tag bg-blue">
+					+86
+				</view>
+				<view class="cu-tag line-blue">
+					中国大陆
+				</view>
+			</view>
+		</view>
+
+		<view class="cu-form-group margin-top">
+			<view class="title">故障级别</view>
+			<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+				<view class="picker">
+					{{index?picker[index]:picker[0]}}
+				</view>
+			</picker>
+		</view>
+		<view class="cu-form-group align-start">
+			<view class="title">故障描述</view>
+			<textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaBInput" placeholder="多行文本输入框"></textarea>
+		</view>
+
+		<view class="cu-bar bg-white margin-top">
+			<view class="action">
+				上传图片(方便制定维修方案)
+			</view>
+			<view class="action">
+				{{imgList.length}}/3
+			</view>
+		</view>
+
+		<view class="cu-form-group">
+			<view class="grid col-4 grid-square flex-sub">
+				<view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+					<image src='{{imgList[index]}}' mode='aspectFill'></image>
+					<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+						<text class="cuIcon-close"></text>
+					</view>
+				</view>
+				<view class="solids" bindtap="ChooseImage">
+					<text class="cuIcon-cameraadd"></text>
+				</view>
+			</view>
+		</view>
+
+		<view class="margin-tb-sm text-center">
+			<button class="cu-btn round bg-cyan shadow" bindtap="loadModal">确认提交</button>
+		</view>
+		<view class='cu-load load-modal' wx:if="{{loadModal}}">
+			<!-- <view class='cuIcon-emojifill text-orange'></view> -->
+			<image src='/images/logo.png' class='png' mode='aspectFit'></image>
+			<view class='gray-text'>加载中...</view>
+		</view>
+
+
+
+
+	</view>
+
+	<!-- 底部按钮 -->
+	<view class="footer">
+		<view class="progress tab_btn" catchtap="toCheck">
+			<icon class="iconfont icon-chart78"></icon>
+			<a>我的报修</a>
+		</view>
+		<view class="report tab_btn" catchtap="toReport">
+			<icon class="iconfont icon-guzhangshenbao"></icon>
+			<a>故障申报</a>
+		</view>
+	</view>
+</view>
