@@ -1,0 +1,59 @@
+/* pages/Custom/Custom.wxss */
+
+.homePage{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 52.8px;
+}
+
+.main{
+  flex:1
+}
+
+.footer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.tab_btn{
+  width: 50%;
+  line-height: 60rpx;
+  padding: 20rpx 80rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.report{
+  background-color: lightcoral;
+
+}
+
+
+.progress{
+  background-color: lightblue;
+
+}
+
+.section__title{
+  padding-left: 16px;
+}
+
+.submit{
+  margin-top: 20rpx;
+}
+
+.accept{
+  padding: 20rpx 30rpx;
+  height: 150rpx;
+  box-shadow: 0 0 5px gray;
+  background-color: bisque;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}

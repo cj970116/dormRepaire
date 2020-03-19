@@ -1,0 +1,16 @@
+{
+  "pages": [
+    "pages/Custom/Custom",
+    "pages/welcome/welcome",
+    "pages/Clogin/Clogin",
+    "pages/Mlogin/Mlogin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#22a2c3",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
