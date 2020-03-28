@@ -48,12 +48,26 @@
   margin-top: 20rpx;
 }
 
-.accept{
+.remark{
   padding: 20rpx 30rpx;
   height: 150rpx;
   box-shadow: 0 0 5px gray;
-  background-color: bisque;
+  background-color:#5e616d;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  color: aliceblue;
 }
+
+.remark_top{
+  display: flex;
+  justify-content: space-between
+  
+}
+.remark_title{
+  font-size: 40rpx;
+}
+
+
+
+

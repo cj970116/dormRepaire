@@ -1,11 +1,16 @@
 	<view class="flex home">
 		<view class="flex tar" catchtap="toClogin">
 			<icon class=" iconfont icon-ziyuan"></icon>
-			<text >报修</text>
+			<text >学生登录</text>
+		</view>
+
+		<view class="flex tar" catchtap="toFlogin">
+			<icon class=" iconfont icon-weixiu2"></icon>
+			<text>维修工登录</text>
 		</view>
 
 		<view class="flex tar" catchtap="toMlogin">
-			<icon class=" iconfont icon-weixiu"></icon>
-			<text>维修</text>
+			<icon class=" iconfont icon-guanliyuan"></icon>
+			<text>管理员登录</text>
 		</view>
 	</view>

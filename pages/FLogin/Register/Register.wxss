@@ -1,0 +1,30 @@
+/* pages/FLogin/Register/Register.wxss */
+.box{
+  width: 100%;
+  height: 1200rpx;
+  padding: 40rpx;
+  
+}
+
+
+.logo image{
+ width: 200rpx;
+height: 200rpx;
+}
+.login{
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.inp{
+  border-radius: 10rpx;
+  border:1px solid gray;
+  width: 450rpx;
+  height: 80rpx;
+  padding-left:20rpx;
+  box-shadow:  0 0 2px gray;
+}
+
+
+
+

@@ -1,9 +1,14 @@
 {
   "pages": [
     "pages/Custom/Custom",
-    "pages/welcome/welcome",
+    "pages/Fixman/Fixman",
     "pages/Clogin/Clogin",
-    "pages/Mlogin/Mlogin"
+    "pages/FLogin/Flogin",
+    "pages/welcome/welcome",
+    "pages/FLogin/Register/Register",
+    "pages/Mlogin/Mlogin",
+    "pages/Custom/repairInfo/repairInfo",
+    "pages/Manager/Manager"
   ],
   "window": {
     "backgroundTextStyle": "light",

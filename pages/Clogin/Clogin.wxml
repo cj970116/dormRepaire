@@ -2,7 +2,7 @@
 	<!-- 获取到userid前的授权登陆页面 -->
 	<view class="flex">
 		<view class='header'>
-			<image src='../../images/logo.png'></image>
+			<image src='../../images/logo1.png'></image>
 		</view>
 
 		<view class="divLine"></view>

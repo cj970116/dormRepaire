@@ -1,5 +1,6 @@
 page{
-  background-image: linear-gradient(25deg, #e9706a, #cb9c8e, #9bc1b4, #00e3db)
+  /* background-image: linear-gradient(25deg, #e9706a, #cb9c8e, #9bc1b4, #00e3db) */
+  background-color: #57c3c2;
 }
 
 .iconfont{

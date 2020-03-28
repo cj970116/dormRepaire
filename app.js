@@ -8,11 +8,8 @@ App.config = config[env] /* 外部js文件调用 */
 App({
 
   Api,
-  get: request.fetch,
-  post: (url, data, option) => {
-    option.method = 'post'
-    return request.fetch(url, data, option)
-  },
+  get: request.getReq,
+  post:request.postReq,
   config: config[env],
   /* 给page调用 */
   onLaunch: function () {

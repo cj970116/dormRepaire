@@ -10,7 +10,7 @@ Page({
    */
   data: {
     userId: "",
-  
+
   },
 
   /**
@@ -22,10 +22,10 @@ Page({
       userId: store.getItem('userId')
     })
     console.log(this.data.userId);
-
+    // 判断用户是否登录
     if (!this.data.userId) {
       this.getSession()
-    }else{
+    } else {
       wx.redirectTo({
         url: './../Custom/Custom',
       })
@@ -41,7 +41,7 @@ Page({
             })
             .then((res) => {
               console.log(res);
-              store.setItem('openId', res.openid)
+              store.setItem('openId', res.data.openid)
 
             }).catch((err) => {
               console.log(err);
@@ -56,12 +56,14 @@ Page({
     if (e.detail.userInfo) {
       let userInfo = e.detail.userInfo
       let that = this
+      store.setItem('userName', userInfo.nickName)
       userInfo.openid = store.getItem('openId')
       app.get(Api.login, {
         userInfo
+
       }).then((res) => {
-        console.log(res);
-        store.setItem('userId', res.userId)
+        // console.log(res);
+        store.setItem('userId', res.data.userId)
         that.setData({
           userId: res.userId
         })
@@ -74,12 +76,6 @@ Page({
         title: '您取消了授权',
         icon: 'none'
       })
-
     }
-
-
-
   },
- 
-
 })

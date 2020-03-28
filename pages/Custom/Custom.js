@@ -1,26 +1,51 @@
 // pages/Custom/Custom.js
 const app = getApp()
+let store = require('../../utils/store')
+const util = require("./../../utils/util")
+let Api = app.Api
 Page({
   data: {
     isShow: true,
-    picker: ['无法使用', '轻微损坏', '老化', '出现异常'],
-    index: null,
+    picker: ['空调', '床', '照明', '卫生间', '门', '其他'],
+    index: 0,
     imgList: [],
     CustomBar: app.globalData.CustomBar,
     basicsList: [{
       icon: 'usefullfill',
-      name: '已受理'
+      name: '等待中'
     }, {
       icon: 'radioboxfill',
-      name: '等待中'
+      name: '已受理'
     }, {
       icon: 'roundcheckfill',
       name: '已完成'
     }, ],
-    basics:0
+    basics: 0,
+    base64ImgList: [],
+    userName: '',
+    repairList: []
   },
 
   onLoad: function () {
+    wx.stopPullDownRefresh()
+    let that = this
+    let id = store.getItem('openId')
+    that.setData({
+      userId: id
+    })
+    app.get(Api.checkReport, {
+      params: {
+        userId: that.data.userId
+      }
+    }).then(res => {
+      that.setData({
+        repairList: res
+      })
+    }, err => {
+      console.log(err);
+
+    })
+
 
   },
 
@@ -31,6 +56,7 @@ Page({
         isShow: false
       })
     }
+
   },
   // 切换到查看进度页面
   toCheck() {
@@ -47,6 +73,8 @@ Page({
       index: e.detail.value
     })
   },
+
+
   // 选择图片
   ChooseImage() {
     let that = this
@@ -55,7 +83,7 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       count: 2,
       /* 最多同时上传几张 */
-      complete: (res) => {
+      success: (res) => {
         let images = that.data.imgList.concat(res.tempFilePaths)
         wx.showToast({
           title: '正在上传...',
@@ -75,9 +103,40 @@ Page({
           })
         }
 
+        // 设置临时数组存放base64图片,并将其赋值给data中的base64ImgList
+        let tempArr = []
+        that.data.imgList.forEach(item => {
+          let url = that.getBase64ImageUrl(item)
+          tempArr.push(url)
+
+        });
+
+        that.setData({
+          base64ImgList: tempArr
+        })
+        // console.log(that.data.base64ImgList);
+
+
+
+
       },
     })
   },
+  // 将base64转换为图片
+  getBase64ImageUrl: function (data) {
+    /// 获取到base64Data
+    var base64Data = data;
+    /// 通过微信小程序自带方法将base64转为二进制去除特殊符号，再转回base64
+    base64Data = wx.getFileSystemManager().readFileSync(data, "base64")
+    /// 拼接请求头，data格式可以为image/png或者image/jpeg等，看需求
+    const base64ImgUrl = "data:image/png;base64," + base64Data;
+    /// 刷新数据
+    return base64ImgUrl;
+  },
+
+
+
+
   // 图片预览
   ViewImage(e) {
     const images = this.data.imgList
@@ -105,7 +164,7 @@ Page({
     })
   },
   // 提交表单动画
-  loadModal() {
+  loadModal(e) {
     this.setData({
       loadModal: true
     })
@@ -114,12 +173,76 @@ Page({
         loadModal: false
       })
     }, 2000)
+
+
   },
-  changeStep(e){
+
+  changeStep(e) {
     let idx = e.target.dataset.index
     this.setData({
-      basics:idx
+      basics: idx
     })
-  }
+  },
+
+  //表单提交方法 
+  formsubmit(e) {
+    console.log(e);
+    let formdata = e.detail.value
+
+    formdata.userId = this.data.userId
+    formdata.imgList = this.data.base64ImgList
+    formdata.type = this.data.picker[this.data.index]
+    formdata.date = util.formatTime(new Date())
+
+    app.post(Api.report, {
+      data: formdata
+    }).then(
+      res => {
+        console.log(res);
+
+      }, err => {
+        console.log(err);
+
+      }
+    )
+
+  },
+
+  /**
+  * 页面相关事件处理函数--监听用户下拉动作
+  */
+ onPullDownRefresh: function () {
+  //  下拉的时候再发一次请求刷新页面
+    let that = this
+    let id = store.getItem('openId')
+    that.setData({
+      userId: id
+    })
+    app.get(Api.checkReport, {
+      params: {
+        userId: that.data.userId
+      }
+    }).then(res => {
+      that.setData({
+        repairList: res
+      })
+    }, err => {
+      console.log(err);
+
+    })
+    this.onLoad(); //重新加载onLoad()
+}
+  
+  
+
+
+
+
+
+
+
+
+
+
 
 })
