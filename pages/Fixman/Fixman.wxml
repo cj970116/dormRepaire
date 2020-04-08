@@ -1,2 +1,27 @@
-<!--pages/Fixman/Fixman.wxml-->
-<text>pages/Fixman/Fixman.wxml</text>
+<scroll-view scroll-x class="bg-cyan nav text-center">
+  <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
+    <text class="cuIcon-warn"></text>出故障了!
+  </view>
+  <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
+    <text class="cuIcon-peoplefill"></text>我受理的报修
+  </view>
+</scroll-view>
+
+<view wx:if="{{TabCur==0}}">
+  <view class="fix-item">
+    <view class="line1">
+      <text class="address">11栋312</text>
+      <text> 2020-04-08</text>
+    </view>
+    <view class="line2">
+      <text class="des">空调出现问题</text>
+      <view>
+        <button class="acc" size="mini" type="primary">受理</button>
+      </view>
+    </view>
+  </view>
+ 
+</view>
+<view wx:if="{{TabCur==1}}">
+  one
+</view>

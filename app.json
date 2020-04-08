@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/Custom/Custom",
     "pages/Fixman/Fixman",
-    "pages/Clogin/Clogin",
-    "pages/FLogin/Flogin",
+    "pages/Custom/Custom",
     "pages/welcome/welcome",
+    "pages/FLogin/Flogin",
+    "pages/Clogin/Clogin",
     "pages/FLogin/Register/Register",
     "pages/Mlogin/Mlogin",
     "pages/Custom/repairInfo/repairInfo",

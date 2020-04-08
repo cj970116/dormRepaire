@@ -36,7 +36,7 @@
 
 	<!--用户触发按钮显示申报页面 	 -->
 	<view class="main" wx:if="{{!isShow}}">
-		<view class="">请填写以下内容</view>
+		<view class="notice">请填写以下内容</view>
 		<form bindsubmit="formsubmit">
 			<view class="cu-form-group">
 				<view class="title">楼栋号</view>
@@ -95,8 +95,8 @@
 				</view>
 			</view>
 
-			<view class="margin-tb-sm text-center">
-				<button class="cu-btn round bg-cyan shadow" bindtap="loadModal" form-type="submit">确认提交</button>
+			<view class="margin-tb-sm text-center submit">
+				<button class="cu-btn round bg-cyan shadow lg " bindtap="loadModal" form-type="submit">确认提交</button>
 			</view>
 			<view class='cu-load load-modal' wx:if="{{loadModal}}">
 				<!-- <view class='cuIcon-emojifill text-orange'></view> -->

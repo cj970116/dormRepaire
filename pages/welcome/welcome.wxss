@@ -9,10 +9,14 @@ page{
 
 .home{
   height: 100vh;
+  
 
 }
 
 .tar{
-  height: 30vh;
+  height:150px;
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 8px 8px 10px rgb(0, 0, 0,0.1),-8px -8px 20px rgba(255, 255, 255, 1);
 
 }

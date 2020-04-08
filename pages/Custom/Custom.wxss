@@ -20,6 +20,11 @@
   bottom: 0;
 }
 
+.notice{
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+}
 .tab_btn{
   width: 50%;
   line-height: 60rpx;
@@ -45,18 +50,19 @@
 }
 
 .submit{
-  margin-top: 20rpx;
+  margin-top: 100rpx;
 }
 
 .remark{
   padding: 20rpx 30rpx;
-  height: 150rpx;
-  box-shadow: 0 0 5px gray;
-  background-color:#5e616d;
+  height: 200rpx;
+  margin-top: 15rpx;
+  background-color:rgba(241, 241, 241,.5);
+  border-radius: 10rpx;
+  box-shadow: 8px 8px 10px rgb(0, 0, 0,0.1),-8px -8px 20px rgba(255, 255, 255, 1);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  color: aliceblue;
 }
 
 .remark_top{

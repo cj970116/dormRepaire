@@ -3,7 +3,7 @@
 */
 module.exports = {
   Dev:{
-    baseApi:'http://localhost:3000'
+    baseApi:'http://192.168.43.191:3000'
   },
   Test:{
 
