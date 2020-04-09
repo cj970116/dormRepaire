@@ -25,14 +25,17 @@ Page({
       res=>{
         console.log(res);
         store.setItem('realName',res.realName)
+        store.setItem('fixId',res.fixId)
         if(formData.pass==res.pass){
           wx.showToast({
             title: '登录成功',
             image:'../../images/true.png',
             complete:function(){
-              wx.redirectTo({
-                url: '../Fixman/Fixman'
-              })
+              setTimeout(function(){
+                wx.redirectTo({
+                  url: '../Fixman/Fixman'
+                })
+              },1000)
             }
           })
          

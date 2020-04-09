@@ -17,7 +17,10 @@
 						<text class="remark_title">{{item.type}}</text>
 						<text>{{item.date}}</text>
 					</view>
-					<text>{{item.des}}</text>
+					<view class="des">
+						<text>{{item.des}}</text>
+						<button class="acc" size="mini" type="warn" catchtap="checkDetail" data-id="{{item.id}}">详情</button>
+					</view>
 				</view>
 
 			</view>
@@ -25,11 +28,32 @@
 
 			<!-- 已受理页面 -->
 			<view wx:if="{{basics==1}}">
-				1
+				<view class="remark" wx:for="{{accList}}" wx:key="index">
+					<view class="remark_top">
+						<text class="remark_title">{{item.type}}</text>
+						<text>{{item.date}}</text>
+					</view>
+					<view class="des">
+						<text>{{item.des}}</text>
+						<view>
+							<button class="acc" size="mini" type="warn" catchtap="checkDetail" data-id="{{item.id}}">详情</button>
+							<button size="mini" type="primary" catchtap="handDone" data-id="{{item.id}}">已解决</button>
+						</view>
+					</view>
+				</view>
 			</view>
 			<!-- 已完成页面 -->
 			<view wx:if="{{basics==2}}">
-				2
+				<view class="remark" wx:for="{{doneList}}" wx:key="index">
+					<view class="remark_top">
+						<text class="remark_title">{{item.type}}</text>
+						<text>{{item.date}}</text>
+					</view>
+					<view class="des">
+						<text>{{item.des}}</text>
+						<button class="acc" size="mini" type="warn" catchtap="checkDetail" data-id="{{item.id}}">详情</button>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>

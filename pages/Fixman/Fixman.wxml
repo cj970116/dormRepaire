@@ -8,20 +8,31 @@
 </scroll-view>
 
 <view wx:if="{{TabCur==0}}">
-  <view class="fix-item">
+  <view class="fix-item" wx:for="{{allItem}}" wx:key="index" >
     <view class="line1">
-      <text class="address">11栋312</text>
-      <text> 2020-04-08</text>
+      <text class="address">{{item.buildNo}}栋{{item.roomNo}}</text>
+      <text>{{item.date}}</text>
     </view>
     <view class="line2">
-      <text class="des">空调出现问题</text>
+      <text class="des">{{item.type}}出现问题</text>
       <view>
-        <button class="acc" size="mini" type="primary">受理</button>
+        <button class="acc" size="mini" type="warn" catchtap="checkDetail" data-id="{{item.id}}">详情</button>
       </view>
     </view>
   </view>
- 
 </view>
+
 <view wx:if="{{TabCur==1}}">
-  one
+   <view class="fix-item" wx:for="{{accItem}}" wx:key="index">
+    <view class="line1">
+      <text class="address">{{item.buildNo}}栋{{item.roomNo}}</text>
+      <text>{{item.date}}</text>
+    </view>
+    <view class="line2">
+      <text class="des">{{item.type}}出现问题</text>
+      <view>
+        <button class="acc" size="mini" type="warn" catchtap="checkDetail" data-id="{{item.id}}">详情</button>
+      </view>
+    </view>
+  </view>
 </view>

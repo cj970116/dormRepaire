@@ -1,2 +1,16 @@
-<!--pages/Custom/repairInfo/repairInfo.wxml-->
-<text>pages/Custom/repairInfo/repairInfo.wxml</text>
+<view class="detail">
+	<view class="top"><text>报修详细</text></view>
+	<view class="box">
+		<view><text>维修地址：</text><text>{{info.buildNo}}栋{{info.roomNo}}</text></view>
+		<view><text>联系电话：</text><text>{{info.tel}}</text></view>
+		<view><text>上报日期：</text><text>{{info.date}}</text></view>
+		<view><text>维修项目：</text><text>{{info.type}}</text></view>
+		<view><text>具体描述：</text><text>{{info.des}}</text></view>
+		<view><text>现场照片：</text><text>{{info.img}}</text></view>
+	</view>
+	<view class="top"><text>已被受理</text></view>
+  <view class="fixBox">
+  <view><text>{{info.realName}}师傅将会上门维修</text> </view>
+  <view><text>联系电话：{{info.fTel}}</text> </view>
+  </view>
+</view>

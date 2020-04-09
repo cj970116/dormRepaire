@@ -23,7 +23,9 @@ Page({
     basics: 0,
     base64ImgList: [],
     userName: '',
-    repairList: []
+    repairList: [],
+    accList:[],
+    doneList:[]
   },
 
   onLoad: function () {
@@ -35,7 +37,8 @@ Page({
     })
     app.get(Api.checkReport, {
       params: {
-        userId: that.data.userId
+        userId: that.data.userId,
+        status:0
       }
     }).then(res => {
       that.setData({
@@ -178,18 +181,38 @@ Page({
   },
 
   changeStep(e) {
+    let that = this
     let idx = e.target.dataset.index
     this.setData({
       basics: idx
     })
+    app.get(Api.checkReport, {
+      params: {
+        userId: that.data.userId,
+        status: idx
+      }
+    }).then(res => {
+      that.setData({
+        repairList: res,
+        accList:res,
+        doneList:res
+      })
+    }, err => {
+      console.log(err);
+
+    })
+
+
+
+
   },
 
   //表单提交方法 
   formsubmit(e) {
     console.log(e);
     let formdata = e.detail.value
-
     formdata.userId = this.data.userId
+    formdata.status = 0
     formdata.imgList = this.data.base64ImgList
     formdata.type = this.data.picker[this.data.index]
     formdata.date = util.formatTime(new Date())
@@ -209,10 +232,10 @@ Page({
   },
 
   /**
-  * 页面相关事件处理函数--监听用户下拉动作
-  */
- onPullDownRefresh: function () {
-  //  下拉的时候再发一次请求刷新页面
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    //  下拉的时候再发一次请求刷新页面
     let that = this
     let id = store.getItem('openId')
     that.setData({
@@ -231,17 +254,53 @@ Page({
 
     })
     this.onLoad(); //重新加载onLoad()
-}
-  
-  
+  },
+  // 查看详情的方法
+  checkDetail(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: './repairInfo/repairInfo?id='+id
+    })
+    
+  },
+  handDone(e){
+    let that = this
+    let id = e.currentTarget.dataset.id
+    app.get(Api.updateStatus, {
+      params: {
+        status: 2,
+        id: id
+      }
+    }).then(
+      res => {
+        wx.showToast({
+          image: '../../images/true.png',
+          complete:function(){
+            setTimeout(function(){
+              that.refresh()
+            },1000)
+          }
+        })
+      }, err => {
+        console.log(err);
 
+      }
+    )
 
-
-
-
-
-
-
+  },
+  refresh(){
+    let that =this
+    app.get(Api.checkReport,{params:{userId:that.data.userId,status:1}}).then(
+      res=>{
+        that.setData({
+          accList:res
+        })
+      },err=>{
+        console.log(err);
+        
+      }
+    )
+  }
 
 
 

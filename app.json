@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/Fixman/Fixman",
     "pages/Custom/Custom",
-    "pages/welcome/welcome",
     "pages/FLogin/Flogin",
+    "pages/Fixman/Fixman",
+    "pages/Fixman/Detail/Detail",
+    "pages/welcome/welcome",
     "pages/Clogin/Clogin",
     "pages/FLogin/Register/Register",
     "pages/Mlogin/Mlogin",

@@ -8,5 +8,10 @@ module.exports = {
   getAll:'/api/cj/getAll',
   report:'/api/cj/report',
   fixManLogin:'/api/cj/fixManLogin',
-  fixRegis:'/api/cj/fixRegis'
+  fixRegis:'/api/cj/fixRegis',
+  detail:'/api/cj/detail',
+  updateStatus:'/api/cj/updateStatus',
+  checkAcc:'/api/cj/checkAcc'
+
+
 }

@@ -74,6 +74,14 @@
   font-size: 40rpx;
 }
 
+.des{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.des button{
+  margin: 0;
+}
 
 
 
