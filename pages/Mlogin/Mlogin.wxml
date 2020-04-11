@@ -1,2 +1,31 @@
-<!--pages/Mlogin/Mlogin.wxml-->
-<text>pages/Mlogin/Mlogin.wxml</text>
+
+<view class="box flex">
+
+	<view class='logo'>
+		<image src='../../images/logo1.png'></image>
+	</view>
+	<view>
+		<form bindsubmit="formSubmit" bindreset="formReset">
+			<view class="flex login">
+				<input placeholder=">>请输入账号" class="inp" name="Mid"></input>
+				<input placeholder=">>请输入密码" class="inp" type="password" name="pass">
+				</input>
+			</view>
+			<view class="flex lr">
+				<view class="padding-xl">
+					<button class="bg-cyan" form-type="submit">登录
+					</button>
+				</view>
+				<view class="padding-xl">
+					<button class="bg-cyan" form-type="reset">重置
+					</button>
+				</view>
+			</view>
+
+		</form>
+	</view>
+
+
+
+
+</view>

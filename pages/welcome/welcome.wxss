@@ -1,21 +1,20 @@
 page{
   /* background-image: linear-gradient(25deg, #e9706a, #cb9c8e, #9bc1b4, #00e3db) */
-  background-color: #57c3c2;
+  background-color:snow;
 }
 
 .iconfont{
-  font-size: 200rpx;
+  font-size: 120rpx;
 }
 
 .home{
   height: 100vh;
-  
 
 }
 
 .tar{
-  height:150px;
-  width: 150px;
+  height:130px;
+  width: 130px;
   border-radius: 10px;
   box-shadow: 8px 8px 10px rgb(0, 0, 0,0.1),-8px -8px 20px rgba(255, 255, 255, 1);
 

@@ -1,4 +1,5 @@
-/* pages/Custom/repairInfo/repairInfo.wxss */.detail{
+/* pages/Custom/repairInfo/repairInfo.wxss */
+.detail{
   padding: 40rpx;
   margin-top: 100rpx;
   display: flex;
@@ -21,13 +22,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 600rpx;
+  height: 500rpx;
   padding: 30rpx;
 }
 .fixBox{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+ 
   height: 200rpx;
   padding: 30rpx;
 }
+.imgs{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.img{
+  width: 600rpx;
+  height: 340rpx;
+}  

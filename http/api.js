@@ -11,7 +11,11 @@ module.exports = {
   fixRegis:'/api/cj/fixRegis',
   detail:'/api/cj/detail',
   updateStatus:'/api/cj/updateStatus',
-  checkAcc:'/api/cj/checkAcc'
+  checkAcc:'/api/cj/checkAcc',
+  mLogin:'/api/cj/mLogin',
+  checkUser:'/api/cj/checkUser',
+  upload:'/api/cj/upload'
+
 
 
 }

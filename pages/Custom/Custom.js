@@ -21,7 +21,7 @@ Page({
       name: '已完成'
     }, ],
     basics: 0,
-    base64ImgList: [],
+    resImgList: [],
     userName: '',
     repairList: [],
     accList:[],
@@ -87,6 +87,7 @@ Page({
       count: 2,
       /* 最多同时上传几张 */
       success: (res) => {
+        
         let images = that.data.imgList.concat(res.tempFilePaths)
         wx.showToast({
           title: '正在上传...',
@@ -106,18 +107,7 @@ Page({
           })
         }
 
-        // 设置临时数组存放base64图片,并将其赋值给data中的base64ImgList
-        let tempArr = []
-        that.data.imgList.forEach(item => {
-          let url = that.getBase64ImageUrl(item)
-          tempArr.push(url)
-
-        });
-
-        that.setData({
-          base64ImgList: tempArr
-        })
-        // console.log(that.data.base64ImgList);
+    
 
 
 
@@ -125,18 +115,7 @@ Page({
       },
     })
   },
-  // 将base64转换为图片
-  getBase64ImageUrl: function (data) {
-    /// 获取到base64Data
-    var base64Data = data;
-    /// 通过微信小程序自带方法将base64转为二进制去除特殊符号，再转回base64
-    base64Data = wx.getFileSystemManager().readFileSync(data, "base64")
-    /// 拼接请求头，data格式可以为image/png或者image/jpeg等，看需求
-    const base64ImgUrl = "data:image/png;base64," + base64Data;
-    /// 刷新数据
-    return base64ImgUrl;
-  },
-
+ 
 
 
 
@@ -209,25 +188,70 @@ Page({
 
   //表单提交方法 
   formsubmit(e) {
-    console.log(e);
+    let that =this
     let formdata = e.detail.value
-    formdata.userId = this.data.userId
+    formdata.userId = that.data.userId
     formdata.status = 0
-    formdata.imgList = this.data.base64ImgList
-    formdata.type = this.data.picker[this.data.index]
+    formdata.imgList = that.data.resImgList
+    formdata.type = that.data.picker[that.data.index]
     formdata.date = util.formatTime(new Date())
+    return new Promise((resolve,reject)=>{
+      let flag =0
+      that.data.imgList.forEach(item=>{
+          wx.uploadFile({
+            filePath: item,
+            name: 'file',
+            url: 'http://192.168.43.191:3000'+Api.upload,
+            header: {'content-type':'multipart/form-data'},
+            success:function(res){
+              // console.log(JSON.parse(res.data).msg);
+             that.data.resImgList.push(JSON.parse(res.data).msg)
+             flag++
+             if(flag==that.data.imgList.length){
+               resolve()
+             }
+            }
+          })
+        })
+    }).then((res)=>{
+      app.post(Api.report, {
+          data: formdata
+        }).then(
+          res => {
+            console.log(res);
+    
+          }, err => {
+            console.log(err);
+    
+          }
+        )
+    })
 
-    app.post(Api.report, {
-      data: formdata
-    }).then(
-      res => {
-        console.log(res);
 
-      }, err => {
-        console.log(err);
+    // that.data.imgList.forEach(item=>{
+    //   wx.uploadFile({
+    //     filePath: item,
+    //     name: 'file',
+    //     url: 'http://192.168.43.191:3000'+Api.upload,
+    //     header: {'content-type':'multipart/form-data'},
+    //     success:function(res){
+    //       // console.log(JSON.parse(res.data).msg);
+    //      that.data.resImgList.push(JSON.parse(res.data).msg)
+    //     }
+    //   })
+    // })
 
-      }
-    )
+    // app.post(Api.report, {
+    //   data: formdata
+    // }).then(
+    //   res => {
+    //     console.log(res);
+
+    //   }, err => {
+    //     console.log(err);
+
+    //   }
+    // )
 
   },
 
@@ -257,9 +281,12 @@ Page({
   },
   // 查看详情的方法
   checkDetail(e){
+    console.log(e.currentTarget);
+    
     let id = e.currentTarget.dataset.id
+    let status = e.currentTarget.dataset.status
     wx.navigateTo({
-      url: './repairInfo/repairInfo?id='+id
+      url: './repairInfo/repairInfo?id='+id+'&status='+status
     })
     
   },

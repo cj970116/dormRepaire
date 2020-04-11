@@ -6,11 +6,16 @@
 		<view><text>上报日期：</text><text>{{info.date}}</text></view>
 		<view><text>维修项目：</text><text>{{info.type}}</text></view>
 		<view><text>具体描述：</text><text>{{info.des}}</text></view>
-		<view><text>现场照片：</text><text>{{info.img}}</text></view>
+		<view>现场图片:</view>
 	</view>
-	<view class="top"><text>已被受理</text></view>
-  <view class="fixBox">
-  <view><text>{{info.realName}}师傅将会上门维修</text> </view>
-  <view><text>联系电话：{{info.fTel}}</text> </view>
-  </view>
+	<view wx:for="{{imageList}}" wx:key="index" class="imgs">
+		<image class="img" src="{{item}}"></image>
+	</view>
+	<view wx:if="{{status!=0}}">
+		<view class="top"><text>已被受理</text></view>
+		<view class="fixBox">
+			<view><text>{{info.realName}}师傅将会上门维修</text> </view>
+			<view><text>联系电话：{{info.fTel}}</text> </view>
+		</view>
+	</view>
 </view>

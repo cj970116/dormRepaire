@@ -1,11 +1,14 @@
 <view class="detail">
-<view class="top"><text>报修详细</text><button size="mini" type="primary" catchtap="handAcc">受理</button></view>
-<view class="box">
-  <view ><text>维修地址：</text><text>{{info.buildNo}}栋{{info.roomNo}}</text></view> 
-  <view ><text>联系电话：</text><text>{{info.tel}}</text></view>
-  <view ><text>上报日期：</text><text>{{info.date}}</text></view>
-  <view ><text>维修项目：</text><text>{{info.type}}</text></view>
-  <view ><text>具体描述：</text><text>{{info.des}}</text></view>
-  <view ><text>现场照片：</text><text>{{info.img}}</text></view>
-  </view>
+	<view class="top"><text>报修详细</text><button size="mini" type="primary" catchtap="handAcc">受理</button></view>
+	<view class="box">
+		<view><text>维修地址：</text><text>{{info.buildNo}}栋{{info.roomNo}}</text></view>
+		<view><text>联系电话：</text><text>{{info.tel}}</text></view>
+		<view><text>上报日期：</text><text>{{info.date}}</text></view>
+		<view><text>维修项目：</text><text>{{info.type}}</text></view>
+		<view><text>具体描述：</text><text>{{info.des}}</text></view>
+		<view>现场图片:</view>
+	</view>
+		<view wx:for="{{imageList}}" wx:key="index" class="imgs">
+			<image class="img" src="{{item}}"></image>
+		</view>
 </view>

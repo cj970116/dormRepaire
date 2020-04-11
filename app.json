@@ -1,15 +1,15 @@
 {
   "pages": [
+    "pages/welcome/welcome",
     "pages/Custom/Custom",
+    "pages/Manager/Manager",
+    "pages/Mlogin/Mlogin",
     "pages/FLogin/Flogin",
     "pages/Fixman/Fixman",
     "pages/Fixman/Detail/Detail",
-    "pages/welcome/welcome",
     "pages/Clogin/Clogin",
     "pages/FLogin/Register/Register",
-    "pages/Mlogin/Mlogin",
-    "pages/Custom/repairInfo/repairInfo",
-    "pages/Manager/Manager"
+    "pages/Custom/repairInfo/repairInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    info: ''
+    info: '',
+    imageList:[]
   },
 
   /**
@@ -25,7 +26,8 @@ Page({
       res => {
         console.log(res);
         that.setData({
-          info: res[0]
+          info: res[0],
+          imageList:JSON.parse(res[0].img)
         })
 
       })

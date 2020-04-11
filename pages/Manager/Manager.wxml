@@ -1,2 +1,22 @@
-<!--pages/Manager/Manager.wxml-->
-<text>pages/Manager/Manager.wxml</text>
+<scroll-view scroll-x class="bg-cyan nav text-center">
+  <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
+    <text class="cuIcon-group"></text>学生信息
+  </view>
+  <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
+    <text class="cuIcon-settingsfill"></text>维修人员信息
+  </view>
+</scroll-view>
+
+<view wx:if="{{TabCur==0}}" >
+  <view class="user" catchtap="checkUinfo">
+    <text>Cjae</text>  
+    <text >>>>查看更多</text>
+  </view> 
+</view>
+
+<view wx:if="{{TabCur==1}}">
+ <view class="user">
+    <text>Cjae</text>  
+    <text >>>>查看更多</text>
+  </view> 
+</view>
