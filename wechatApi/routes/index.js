@@ -17,6 +17,8 @@ router.get("/checkAcc" ,all.checkAcc)
 router.post("/mLogin" ,all.mLogin)
 router.get("/checkUser" ,all.checkUser)
 router.post("/upload" ,all.upload)
+router.get("/checkFixman" ,all.checkFixman)
+
 
 
 module.exports = router

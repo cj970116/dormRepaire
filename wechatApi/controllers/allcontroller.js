@@ -1,25 +1,61 @@
 let config = require("../util/config");
 const util = require("../util/util");
-var path = require("path")
+var path = require("path");
 my = Object.assign({}, config.my);
-let fs = require('fs')
-let request =require('request')
-const multiparty=require('multiparty')
-const uuid=require('uuid')
-
-
-
+let fs = require("fs");
+let request = require("request");
+const multiparty = require("multiparty");
+const uuid = require("uuid");
 
 // 获取所有用户信息
 checkUser = (req, res) => {
-  let sql = "select * from t_user";
-  let sqlArr = [];
+  let sqlArr;
+  let sql;
+  let id;
+  if (req.query.params) {
+    id = JSON.parse(req.query.params).id;
+    console.log(id);
+  }
+
+  if (id == null) {
+    sql = "select * from t_user";
+    sqlArr = [];
+  } else {
+    sql = "select * from t_baoxiu where userId=?";
+    sqlArr = [id];
+  }
   let callback = function (err, data) {
     if (err) {
       console.log(err);
     } else {
       console.log(data);
       res.send(data);
+    }
+  };
+  config.sqlConnect(sql, sqlArr, callback);
+};
+
+// 获取所有员工信息
+checkFixman = (req, res) => {
+  let sql;
+  let sqlArr;
+  let id;
+  if (req.query.params) {
+    id = JSON.parse(req.query.params).id;
+  }
+  if (id == null) {
+    sql = "select * from t_fixman";
+    sqlArr = [];
+  }else{
+    sql = "select * from t_baoxiu where fixId=?"
+    sqlArr=[id]
+  }
+  let callback = function (err, data) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(data);
+      console.log(data);
     }
   };
   config.sqlConnect(sql, sqlArr, callback);
@@ -78,8 +114,8 @@ checkAcc = (req, res) => {
 // 修改维修状态
 updateStatus = (req, res) => {
   let params = JSON.parse(req.query.params);
-  let sql = "update t_baoxiu set status=? where id=?";
-  let sqlArr = [params.status, params.id];
+  let sql = "update t_baoxiu set status=?,fixId=? where id=?";
+  let sqlArr = [params.status, params.fixId,params.id];
   let callback = function (err, data) {
     if (err) {
       console.log(err);
@@ -90,13 +126,11 @@ updateStatus = (req, res) => {
   config.sqlConnect(sql, sqlArr, callback);
 };
 
-
 // 提交报修表单
 report = (req, res) => {
-
-
-  let post = req.body.data
-  let sql ="insert into t_baoxiu set id=0,tel=?,img=?,type=?,des=?,roomNo=?,buildNo=?,date=?,userId=?,status=?";
+  let post = req.body.data;
+  let sql =
+    "insert into t_baoxiu set id=0,tel=?,img=?,type=?,des=?,roomNo=?,buildNo=?,date=?,userId=?,status=?";
   let sqlArr = [
     post.tel,
     JSON.stringify(post.imgList),
@@ -247,39 +281,35 @@ mLogin = (req, res) => {
   };
   config.sqlConnect(sql, sqlArr, callback);
 };
+// 维修图片上传
 upload = (req, res) => {
- const form = new multiparty.Form();
-    //设置单文件大小限制 2M 
-    form.maxFieldsSize = 2 * 1024 * 1024;
-    form.uploadDir='public'  
-    form.parse(req,function (err,flields,files) {
-        // console.log(files, " :files")
-        //拿到扩展名
-        const extname = path.extname(files.file[0].originalFilename);
-        //uuid生成 图片名称
-        const nameID = (uuid.v4()).replace(/\-/g,'');
-        const oldpath = path.normalize(files.file[0].path);
+  const form = new multiparty.Form();
+  //设置单文件大小限制 2M
+  form.maxFieldsSize = 2 * 1024 * 1024;
+  form.uploadDir = "public";
+  form.parse(req, function (err, flields, files) {
+    // console.log(files, " :files")
+    //拿到扩展名
+    const extname = path.extname(files.file[0].originalFilename);
+    //uuid生成 图片名称
+    const nameID = uuid.v4().replace(/\-/g, "");
+    const oldpath = path.normalize(files.file[0].path);
 
-        //新的路径
-        let newfilename = nameID+extname;
-        var newpath =  './public/images/'+newfilename;
-        let respath = "http://localhost:3000/images/"+newfilename
+    //新的路径
+    let newfilename = nameID + extname;
+    var newpath = "./public/images/" + newfilename;
+    let respath = "http://localhost:3000/images/" + newfilename;
 
-        //改名
-        fs.rename(oldpath,newpath,function(err){
-            if(err){
-       
-                res.send({ msg: '文件上传失败:' }).end();
-            }else{
-                res.send({ msg: respath}).end();
-                // console.log(respath);
-            }
-            
-        })
-
-
-    })
-
+    //改名
+    fs.rename(oldpath, newpath, function (err) {
+      if (err) {
+        res.send({ msg: "文件上传失败:" }).end();
+      } else {
+        res.send({ msg: respath }).end();
+        // console.log(respath);
+      }
+    });
+  });
 };
 
 module.exports = {
@@ -296,4 +326,5 @@ module.exports = {
   mLogin,
   checkUser,
   upload,
+  checkFixman,
 };
