@@ -226,33 +226,6 @@ Page({
           }
         )
     })
-
-
-    // that.data.imgList.forEach(item=>{
-    //   wx.uploadFile({
-    //     filePath: item,
-    //     name: 'file',
-    //     url: 'http://192.168.43.191:3000'+Api.upload,
-    //     header: {'content-type':'multipart/form-data'},
-    //     success:function(res){
-    //       // console.log(JSON.parse(res.data).msg);
-    //      that.data.resImgList.push(JSON.parse(res.data).msg)
-    //     }
-    //   })
-    // })
-
-    // app.post(Api.report, {
-    //   data: formdata
-    // }).then(
-    //   res => {
-    //     console.log(res);
-
-    //   }, err => {
-    //     console.log(err);
-
-    //   }
-    // )
-
   },
 
   /**
@@ -327,6 +300,12 @@ Page({
         
       }
     )
+  },
+  // 常见问题页面
+  toFAQ(){
+    wx.navigateTo({
+      url: './FAQ/FAQ',
+    })
   }
 
 

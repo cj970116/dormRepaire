@@ -1,0 +1,9 @@
+<view wx:if="{{userId}}" class="allInfo">
+	<wxzx-detail id="detail" userId="{{userId}}">
+
+	</wxzx-detail>
+</view>
+<view wx:if="{{fixId}}">
+	<wxzx-detail  fixId="{{fixId}}" id="detail">
+	</wxzx-detail>
+</view>

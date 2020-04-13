@@ -1,0 +1,45 @@
+/* components/wxzx-detail/wxzx-detail.wxss *//* pages/Custom/repairInfo/repairInfo.wxss */
+.detail{
+  padding: 40rpx;
+  margin-top: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+.top{
+  height: 60rpx;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid red;
+}
+
+
+.box{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 500rpx;
+  padding: 30rpx;
+}
+.fixBox{
+ 
+  height: 200rpx;
+  padding: 30rpx;
+}
+.imgs{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.img{
+  width: 600rpx;
+  height: 340rpx;
+}  
+
+.status{
+  display: flex;
+}

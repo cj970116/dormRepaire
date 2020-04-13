@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "wxzx-detail":"../../../components/wxzx-detail/wxzx-detail"
+  }
+}

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/welcome/welcome",
+    "pages/Custom/FAQ/FAQ",
     "pages/Custom/Custom",
     "pages/Manager/Manager",
     "pages/Mlogin/Mlogin",
@@ -9,12 +10,13 @@
     "pages/Fixman/Detail/Detail",
     "pages/Clogin/Clogin",
     "pages/FLogin/Register/Register",
-    "pages/Custom/repairInfo/repairInfo"
+    "pages/Custom/repairInfo/repairInfo",
+    "pages/Manager/Info/info"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#22a2c3",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "宿舍报修系统",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

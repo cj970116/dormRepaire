@@ -7,7 +7,9 @@ Page({
    */
   data: {
     TabCur: 0,
-    scrollLeft:0
+    scrollLeft:0,
+    user:[],
+    fixMans:[]
   },
 
   /**
@@ -16,7 +18,9 @@ Page({
   onLoad: function (options) {
     app.get(Api.checkUser).then(
       res=>{
-        console.log(res);
+        this.setData({
+          users:res
+        })
         
       },err=>{
         console.log(err);
@@ -31,10 +35,32 @@ Page({
       TabCur: id,
       scrollLeft: (id-1)*60
     })
+    app.get(Api.checkFixman).then(
+      res=>{
+        that.setData({
+          fixMans:res
+        })
+        
+      },err=>{
+        console.log(err);
+        
+      }
+    )
   },
-  checkUinfo(){
+  checkUinfo(e){
+   
     
+    let userId = e.currentTarget.dataset.userid
+    wx.navigateTo({
+      url: './Info/info?userId='+userId
+    })
     
+  },
+  checkFinfo(e){
+    let fixid = e.currentTarget.dataset.fixid
+    wx.navigateTo({
+      url: './Info/info?fixid='+fixid,
+    })
   }
 
 })

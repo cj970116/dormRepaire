@@ -25,9 +25,15 @@ Page({
     }).then(
       res => {
         console.log(res);
+        let temImgList = JSON.parse(res[0].img)
+          let img = []
+          temImgList.forEach(item=>{
+            let ele = item.replace(/localhost/,"192.168.43.191")
+            img.push(ele)
+          })
         that.setData({
           info: res[0],
-          imageList:JSON.parse(res[0].img)
+          imageList:img
         })
 
       })

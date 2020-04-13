@@ -1,0 +1,36 @@
+<view wx:for="{{uInfo}}" wx:key="index" wx:if="{{userId}}">
+	<view class="detail">
+		<view class="top"><text>报修详细</text></view>
+		<view class="box">
+			<view><text>维修地址：</text><text>{{item.buildNo}}栋{{info.roomNo}}</text></view>
+			<view><text>联系电话：</text><text>{{item.tel}}</text></view>
+			<view><text>上报日期：</text><text>{{item.date}}</text></view>
+			<view><text>维修项目：</text><text>{{item.type}}</text></view>
+			<view><text>具体描述：</text><text>{{item.des}}</text></view>
+      <view class="status">
+        <text>维修状态：</text>
+        <text wx:if="{{item.status==0}}">已提交</text>
+        <text wx:if="{{item.status==1}}">已受理</text>
+        <text wx:if="{{item.status==2}}">已完成</text>
+      </view>
+		</view>
+	</view>
+</view>
+
+<view wx:for="{{fInfo}}" wx:key="index" wx:if="{{fixId}}">
+	<view class="detail">
+		<view class="top"><text>报修详细</text></view>
+		<view class="box">
+			<view><text>维修地址：</text><text>{{item.buildNo}}栋{{info.roomNo}}</text></view>
+			<view><text>联系电话：</text><text>{{item.tel}}</text></view>
+			<view><text>上报日期：</text><text>{{item.date}}</text></view>
+			<view><text>维修项目：</text><text>{{item.type}}</text></view>
+			<view><text>具体描述：</text><text>{{item.des}}</text></view>
+      <view class="status">
+        <text>维修状态：</text>
+        <text wx:if="{{item.status==1}}">已受理</text>
+        <text wx:if="{{item.status==2}}">已完成</text>
+      </view>
+		</view>
+	</view>
+</view>

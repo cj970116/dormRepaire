@@ -1,0 +1,11 @@
+/* pages/Custom/FAQ/FAQ.wxss */
+
+.title{
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+.que{
+  font-weight: bold;
+}

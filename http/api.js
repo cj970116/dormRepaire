@@ -14,7 +14,9 @@ module.exports = {
   checkAcc:'/api/cj/checkAcc',
   mLogin:'/api/cj/mLogin',
   checkUser:'/api/cj/checkUser',
-  upload:'/api/cj/upload'
+  upload:'/api/cj/upload',
+  checkFixman:'/api/cj/checkFixman',
+
 
 
 

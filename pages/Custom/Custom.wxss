@@ -85,6 +85,9 @@
 .des button{
   margin: 0;
 }
-
+.faq{
+  flex-direction: row;
+  justify-content: center;
+}
 
 
